@@ -1,7 +1,10 @@
 /**
- * Created by Administrator on 2017/2/23 0023.
+ * Created by iceconfig on 2017/2/23 0023.
  */
-class MyStack<T> {
+import {IStack} from "./../../common/stack";
+
+
+class MinStack<T> implements IStack<T> {
     private stackData: T[] = [];
     private stackMin: T[] = [];
 
@@ -9,32 +12,35 @@ class MyStack<T> {
         return this.stackData.length;
     }
 
-    public push(data: T) {
+    push(data: T) {
         this.stackData.push(data);
         let curMin = this.getMin();
         this.stackMin.push(curMin < data ? curMin : data);
     };
 
-    public pop(): T {
+    pop(): T {
         this.stackMin.pop();
         return this.stackData.pop();
     };
 
-    public getMin(): T {
+    isEmpty():boolean {
+        return this.stackData.length == 0;
+    };
+
+    getMin(): T {
         return this.stackMin[this.stackMin.length - 1];
     };
 
-    public print() {
+    print() {
         console.log(this.stackData);
-        console.log(this.length);
         console.log(this.getMin());
     }
 }
 
-let myStack = new MyStack<number>();
+let myStack = new MinStack<number>();
 let data = [13, 22, 9, 6, 8, 4, 88, 2, 54];
 
 data.filter(data => {
     myStack.push(data);
-    myStack.print()
+    myStack.print();
 })
