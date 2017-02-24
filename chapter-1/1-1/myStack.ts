@@ -18,17 +18,28 @@ export class MinStack<T> implements IStack<T> {
     };
 
     push(newData: T) {
+
+        if(this.isEmpty()) {
+            this.stackMin.push(newData);
+        } else {
+            let curMin = this.getMin();
+            this.stackMin.push(this.comparator.compare(curMin, newData) < 0 ? curMin : newData);
+        }
+
         this.stackData.push(newData);
-        let curMin = this.getMin();
-        this.stackMin.push(this.comparator.compare(curMin, newData) < 0 ? curMin : newData);
     };
 
     pop(): T {
+
+        if(this.isEmpty()) {
+            return undefined;
+        }
+
         this.stackMin.pop();
         return this.stackData.pop();
     };
 
-    isEmpty():boolean {
+    isEmpty(): boolean {
         return this.stackData.length == 0;
     };
 
@@ -39,7 +50,7 @@ export class MinStack<T> implements IStack<T> {
     print() {
         console.log(this.stackData);
         console.log(this.getMin());
-    }
+    };
 }
 
 class NumberComparator implements IComparator<number> {
