@@ -6,7 +6,7 @@ export interface IStack<T> {
 }
 
 
-export abstract class Stack<T> implements IStack<T>{
+export class Stack<T> implements IStack<T>{
 	
 	private data: T[] = [];
 
