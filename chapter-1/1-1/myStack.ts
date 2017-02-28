@@ -1,9 +1,8 @@
+import {IStack} from "./../../common/stack";
+import {IComparator} from "./../../common/comparator";
 /**
  * Created by iceconfig on 2017/2/23 0023.
  */
-import {IStack} from "./../../common/stack";
-import {IComparator} from "./../../common/comparator";
-
 export class MinStack<T> implements IStack<T> {
     private stackData: T[] = [];
     private stackMin: T[] = [];
